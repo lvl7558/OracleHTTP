@@ -19,9 +19,9 @@ import org.apache.commons.dbcp2.BasicDataSource;
 public class Main {
     //    private static final Logger LOGGER = LoggerFactory.getLogger(Main.class);
     private static BasicDataSource dataSource;
-    private static final String JDBC_URL = "jdbc:oracle:thin:@localhost:1521:your_oracle_sid";
-    private static final String JDBC_USER = "your_username";
-    private static final String JDBC_PASSWORD = "your_password";
+    private static final String JDBC_URL = "jdbc:oracle:thin:@localhost:1521:FREE";
+    private static final String JDBC_USER = "C##luka";
+    private static final String JDBC_PASSWORD = "ritcroatia";
     public static void main(String[] args) throws IOException, InterruptedException {
         // Set up the data source
         dataSource = new BasicDataSource();
@@ -41,8 +41,8 @@ public class Main {
         // Start the HTTP server
         server.start();
         // Schedule performance monitoring task
-        ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
-        scheduler.scheduleAtFixedRate(Main::monitorPerformance, 0, 5, TimeUnit.SECONDS);
+//        ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
+//        scheduler.scheduleAtFixedRate(Main::monitorPerformance, 0, 5, TimeUnit.SECONDS);
     }
 
     private static void monitorPerformance() {
@@ -60,8 +60,8 @@ public class Main {
 //        System.out.println("Max Memory: " + maxMemory / (1024 * 1024) + " MB");
 
         //Add to csv file
-        writeToFile("cpuusage.csv", cpuUsage + "");
-        writeToFile("ramusage.csv", usedMemory / (1024 * 1024) + "," + maxMemory / (1024 * 1024));
+//        writeToFile("cpuusage.csv", cpuUsage + "");
+//        writeToFile("ramusage.csv", usedMemory / (1024 * 1024) + "," + maxMemory / (1024 * 1024));
     }
     //add the to files
     private static void writeToFile(String fileName, String data) {
@@ -103,10 +103,10 @@ public class Main {
                 }
             };
             //Virtual Threads
-            //Thread.startVirtualThread(run);
+            Thread.startVirtualThread(run);
             //Normal Threads
-            Thread thread = new Thread(run);
-            thread.start();
+//            Thread thread = new Thread(run);
+//            thread.start();
         }
 
         private void handleGetRequest(HttpExchange exchange) throws IOException {
